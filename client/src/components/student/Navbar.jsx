@@ -39,7 +39,7 @@ const becomeEducator=async()=>{
             <div className='flex gap-7'>
               {user&&<>
                 <button onClick={becomeEducator}>{isEducator?'Educator Dashboard':'Become Educator'}</button>|
-                <Link to='/my-enrollment'> My Enrollments </Link>
+                <Link to='/my-enrollments'> My Enrollments </Link>
                 </>
               }
             </div>
@@ -50,7 +50,7 @@ const becomeEducator=async()=>{
                <div className='text-sm'>
                  {user&&<>
                 <button onClick={becomeEducator}>{isEducator?'Educator Dashboard':'Become Educator'} </button>| 
-                <Link to='/my-enrollment'> My Enrollments </Link>
+                <Link to='/my-enrollments'> My Enrollments </Link>
                 </>
               }
             </div>
