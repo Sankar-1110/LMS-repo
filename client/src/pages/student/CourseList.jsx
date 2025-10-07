@@ -8,6 +8,8 @@ import Footer from '../../components/student/Footer';
 
 const CourseList = () => {
   const {navigate,allCourses}=useContext(AppContext);
+  console.log('allcourses:',allCourses);
+  
   const {input}=useParams()
   const  [filteredCourse,setFilteredCourse]=useState([]);
   useEffect(()=>{
@@ -16,7 +18,7 @@ const CourseList = () => {
       input?setFilteredCourse(tempCourses.filter(item=>item.courseTitle.toLowerCase().includes(input.toLowerCase()))):setFilteredCourse(tempCourses)
      }
   },[allCourses,input])
-console.log(filteredCourse);
+console.log('f2: ',filteredCourse);
   
   
   

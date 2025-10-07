@@ -12,12 +12,14 @@ import Mycourses from './pages/educator/Mycourses.jsx'
 import Studentenroll from './pages/educator/Studentenroll.jsx'
 import AddCourse from './pages/educator/AddCourse.jsx'
 import Navbar from './components/student/Navbar.jsx'
+import {ToastContainer} from 'react-toastify'
 
 function App() {
 
   const isEducatorRoute=useMatch('/educator/*')
   return (
     <div className='text-default min-h-screen bg-white'>
+      <ToastContainer/>
       {!isEducatorRoute&& <Navbar/>}
      
     <Routes>
@@ -26,7 +28,7 @@ function App() {
       <Route path='/course-List/:input' element={<CourseList/>}></Route>
 
       <Route path='/course/:id' element={<CourseDetail/>}></Route>
-      <Route path='/my-enrollment' element={<Myenrolment/>}></Route>
+      <Route path='/my-enrollments' element={<Myenrolment/>}></Route>
       <Route path='/player/:courseId' element={<Player/>}></Route>
       <Route path='/loading/:path' element={<Loading/>}></Route>
       <Route path='/educator' element={<Educator/>}>

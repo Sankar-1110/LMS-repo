@@ -3,6 +3,7 @@ import {clerkClient} from '@clerk/express'
 import {v2 as cloudinary} from 'cloudinary'
 import Course from '../models/Course.js'
 import { Purchase } from '../models/purchase.js'
+import User from '../models/user.js'
 export const updateRoleEducator=async(req,res)=>{
     try{
         const userId=req.auth().userId
@@ -35,6 +36,8 @@ export const addCourse=async(req,res)=>{
         await newCourse.save()
         res.json({success:true,message:'Course Added'})
     }catch(error){
+        console.log('error occuring here!!!');
+        
         res.json({success:false,message:error.message})
 
     }
@@ -52,7 +55,7 @@ export const getEducatorCourse=async(req,res)=>{
 
 //Get Educator Dashbord Data
 
-export const educatorDashboardData= async()=>{
+export const educatorDashboardData= async(req,res)=>{
     try{
        const educator =req.auth.userId;
        const courses= await Course.find({educator});
@@ -73,7 +76,7 @@ export const educatorDashboardData= async()=>{
         
         students.forEach(student=>{
             enrolledStudentsData.push({
-                courseTitle:courseTitle,
+                courseTitle:course.courseTitle,
                 student
             })
         });

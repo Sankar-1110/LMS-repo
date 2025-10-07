@@ -94,7 +94,7 @@ export const updateCourseProgress=async(req,res)=>{
         }
         else{
             await courseProgress.create({
-                useerId,
+                userId,
                 courseId,
                 lectureCompleted:[lectureId]
             })
