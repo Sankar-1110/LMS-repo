@@ -4,7 +4,7 @@ import SearchBar from '../../components/student/SearchBar';
 import { useParams } from 'react-router-dom';
 import CourseCard from '../../components/student/CourseCard';
 import { assets } from '../../assets/assets';
-import Footer from '../../components/student/Footer';
+// Footer is rendered globally in App.jsx
 
 const CourseList = () => {
   const {navigate,allCourses}=useContext(AppContext);
@@ -38,8 +38,7 @@ console.log('f2: ',filteredCourse);
     <div  className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-9 lg:gap-15 mt-6'>
       {filteredCourse.map((course,index)=><CourseCard key={index}course={course}/>)}
       </div>
-      </div>
-      <Footer/>
+  </div>
       </>
   )
 }

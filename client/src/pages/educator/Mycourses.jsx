@@ -24,6 +24,30 @@ const Mycourses = () => {
     fetchEducatorCourses()
     }
 },[isEducator])
+
+const deleteCourse = async (courseId) => {
+  const ok = window.confirm('Are you sure you want to delete this course? This action cannot be undone.')
+  if (!ok) return
+
+  try {
+    const token = await getToken()
+    const res = await axios.delete(backendUrl+`/api/educator/course/${courseId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+
+    if (res.data?.success) {
+      setCourses(prev => prev.filter(c => c._id !== courseId))
+      toast.success(res.data.message || 'Course deleted')
+    } else {
+      
+      toast.error(res.data?.message || 'Failed to delete course')
+    }
+  } catch (error) {
+    toast.error(error.response?.data?.message || error.message || 'Delete failed')
+    console.error('deleteCourse error', error)
+  }
+}
+
   return courses?(
     <div className='h-screen flex flex-col items-start justify-between md:p-8 md:pb-0 p-4 pt-8 pb-0'>
       <div className='w-full'>
@@ -36,6 +60,7 @@ const Mycourses = () => {
             <th className='px-4 py-3 font-semibold truncate'>Earnings</th>
             <th className='px-4 py-3 font-semibold truncate'>Students</th>
             <th className='px-4 py-3 font-semibold truncate'>Published on</th>
+            <th className='px-4 py-3 font-semibold truncate'>Actions</th>
             </tr></thead>
             <tbody className='text-sm text-gray-500'>
               {courses.map((course)=>(
@@ -47,6 +72,15 @@ const Mycourses = () => {
                 <td className='px-4 py-3'>{currency}{Math.floor(course.enrolledStudents.length*(course.coursePrice-course.discount*course.coursePrice/100))}</td>
                 <td className='px-4 py-3'>{course.enrolledStudents.length}</td>
                 <td className='px-4 py-3'>{new Date(course.createdAt).toLocaleDateString()}</td>
+                <td className='px-4 py-3'>
+                  <button
+                    onClick={() => deleteCourse(course._id)}
+                    
+                    className='px-2 py-1 text-white bg-red-900 hover:bg-red-700 rounded'
+                  >
+                    Delete
+                  </button>
+                </td>
                 </tr>
               ))}
 

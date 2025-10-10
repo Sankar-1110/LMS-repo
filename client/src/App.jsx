@@ -12,17 +12,19 @@ import Mycourses from './pages/educator/Mycourses.jsx'
 import Studentenroll from './pages/educator/Studentenroll.jsx'
 import AddCourse from './pages/educator/AddCourse.jsx'
 import Navbar from './components/student/Navbar.jsx'
+import Footer from './components/student/Footer.jsx'
 import {ToastContainer} from 'react-toastify'
 
 function App() {
 
   const isEducatorRoute=useMatch('/educator/*')
   return (
-    <div className='text-default min-h-screen bg-white'>
+    <div className='text-default min-h-screen bg-white flex flex-col'>
       <ToastContainer/>
-      {!isEducatorRoute&& <Navbar/>}
+      {!isEducatorRoute && <Navbar/>}
      
-    <Routes>
+      <main className='flex-1'>
+        <Routes>
       <Route path='/' element={<Home/>}></Route>
       <Route path='/course-List' element={<CourseList/>}></Route>
       <Route path='/course-List/:input' element={<CourseList/>}></Route>
@@ -41,7 +43,11 @@ function App() {
       </Route>
 
 
-    </Routes>
+        </Routes>
+      </main>
+
+      {/* Footer for student pages */}
+      {!isEducatorRoute && <Footer />}
     </div>
   )
 }

@@ -4,7 +4,6 @@ import Loading from '../../components/student/Loading'
 import { useParams } from 'react-router-dom'
 import { assets } from '../../assets/assets'
 import humanizeDuration from 'humanize-duration'
-import Footer from '../../components/student/Footer'
 import YouTube from 'react-youtube'
 import { toast } from 'react-toastify'
 import axios from 'axios'
@@ -127,8 +126,8 @@ const CourseDetail = () => {
                   <p className='pt-3 rich-text' dangerouslySetInnerHTML={{__html:courseData.courseDescription}}></p>
                 </div>
       </div>
-      {/* {right column} */}
-      <div className='max-w-[420px] z-10 shadow-[0px 4px 15px 2px rgba(0,0,0,0.1)]  rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[420px]'>
+  {/* {right column} */}
+  <div className='max-w-[420px] z-10 shadow-lg rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[420px]' style={{boxShadow: '10px 4px 30px rgba(2,6,23,0.12)'}}>
          {playerData?<YouTube vedioId={playerData.vedioId} opts={{playerVars:{autoplay:1}}} iframeClassName='w-full aspect-vedio'/>:
            <img src={courseData.courseThumbnail} alt="" />}
         
@@ -174,7 +173,7 @@ const CourseDetail = () => {
         </div>
       </div>
     </div>
-    <Footer/>
+    
     </>
   ): <Loading/>
 }
